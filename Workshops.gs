@@ -48,6 +48,7 @@ function getEmailsSelected(selected,wk)
    var table_emails=sheet_workshops.getRange(5,1,max_registros, 3).getValues();
    var emailProfePython = sheet_workshops.getRange('emailProfePython').getValue();
    var emailProfeSpark = sheet_workshops.getRange('emailProfeSpark').getValue();
+   var emailProfeMicro = sheet_workshops.getRange('emailProfeMicro').getValue();
    var emails=[];
   // Logger.log(JSON.stringify(table_emails))
      
@@ -62,6 +63,9 @@ function getEmailsSelected(selected,wk)
    }
    if (selected == false && wk=="Python") {
    emails.push(emailProfePython)
+   } 
+    if (selected == false && wk=="Micro") {
+   emails.push(emailProfeMicro)
    } 
    return emails;     
 }
