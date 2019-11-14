@@ -82,4 +82,49 @@ var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     }
 }
 
+//validar email Micro
+function validateEmailMicroYlanzarCuestionarioWorkshop()  {
+var sheet_workshops=SpreadsheetApp.getActive().getSheetByName('Workshops');
+var emailProfeMicro = sheet_workshops.getRange('emailProfeMicro').getValue();
+var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!re.test(emailProfeMicro)){
+    var ui = SpreadsheetApp.getUi();
+   var response = ui.prompt('Necesitamos email profesor Micro', 'Cual es tu correo electrónico?', ui.ButtonSet.YES_NO);  
+   // Process the user's response.
+   if (response.getSelectedButton() == ui.Button.YES) {
+       if(response.getResponseText() == ""){
+           sheet_workshops.getRange('emailProfeMicro')
+           .setValue("Falta email aqui").setBackground("red").setFontColor("white");
+           return
+       }else{
+        var emailDado = response.getResponseText() 
+            sheet_workshops.getRange('emailProfeMicro')
+           .setValue(emailDado)
+           return
+        }
+  } else if (response.getSelectedButton() == ui.Button.NO) {
+        sheet_workshops.getRange('emailProfeMicro')
+       .setValue("Falta email aqui").setBackground("red").setFontColor("white");
+  } else {
+        sheet_workshops.getRange('emailProfeMicro')
+       .setValue("Falta email aqui").setBackground("red").setFontColor("white");
+  }
+    
+    } else {
+    //Lanzar Workshop Micro
+      
+      
+    //lanzarCuestionarioWorkshop('Micro');
+    
+      
+    var htmlOutput = HtmlService
+    .createHtmlOutput('<p>Ok Spark</p>')
+    .setWidth(250)
+    .setHeight(300);
+     SpreadsheetApp.getUi().showModalDialog(htmlOutput, 'My add-on'); 
+     
+    // Logger.log("Evaluadores " + getEmailsSelected(false, "Spark"))
+    }
+}
+
 
